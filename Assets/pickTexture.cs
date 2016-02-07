@@ -74,18 +74,8 @@ public class pickTexture : MonoBehaviour {
 				chosenTexture = texturefeet03;
 			}
 		}
-
-		//sprite = gameObject.GetComponent<SpriteRenderer>();
 		textureName = bodyPart + "_0" + randomInt;
-		//string textureObjectName = "texture" + bodyPart + "0" + randomInt;
-		//string texture = "Assets/Resources/" + textureName + ".png";
-		//Sprite inputTexture = UnityEditor.AssetDatabase.LoadAssetAtPath(texture, typeof(Sprite)) as Sprite;
-		//Sprite inputTexture = Resources.Load(textureName, typeof(Sprite)) as Sprite;
-		//this.GetComponent<SpriteRenderer> ().sprite = inputTexture;
-		//GetComponent(SpriteRenderer).sprite = inputTexture;
-		//gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(texture, typeof(Sprite)) as Sprite;
 		gameObject.GetComponent<SpriteRenderer>().sprite = chosenTexture;
-		//Debug.Log(texturefeet03);
 	}
 
 	public SpriteRenderer tempRend;  //allows to adjust for sorting within the unit layer, for visuals
