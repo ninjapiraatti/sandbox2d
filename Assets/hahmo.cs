@@ -19,7 +19,7 @@ public class hahmo : MonoBehaviour {
 		if (!moving) {
 
 		} else {
-			transform.Translate((directionX * speedFactor * Time.deltaTime), (directionY * speedFactor * Time.deltaTime),0);
+			transform.Translate((directionX * speedFactor * Time.deltaTime), (directionY * speedFactor * Time.deltaTime), (directionY * -1 * speedFactor * Time.deltaTime));
 		}
 	}
 	void changeDirection() {
