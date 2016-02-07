@@ -12,7 +12,7 @@ public class hahmo : MonoBehaviour {
 	float directionX = 0.3F;
 	float directionY = 0.3F;
 	bool moving = true;
-	float speedFactor = 5.0F;
+	float speedFactor = 3.0F;
 	float randomBoolean = Random.Range(0.1F,7.0F);
 
 	void Update () {

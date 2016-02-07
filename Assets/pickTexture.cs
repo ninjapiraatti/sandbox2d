@@ -83,7 +83,7 @@ public class pickTexture : MonoBehaviour {
 			tempRend = gameObject.GetComponent<SpriteRenderer>();
 	}
 	void LateUpdate(){
-			tempRend.sortingOrder = (int)Camera.main.WorldToScreenPoint(tempRend.bounds.min).y * -100;
+			tempRend.sortingOrder = (int)Camera.main.WorldToScreenPoint(tempRend.bounds.min).y * -10;
 	}
 
 	// Update is called once per frame
