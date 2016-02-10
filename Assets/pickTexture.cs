@@ -23,6 +23,7 @@ public class pickTexture : MonoBehaviour {
 	//public inputTexture : Sprite;
 	//public SpriteRenderer sprite;
 	public Sprite chosenTexture;
+	public int spriteOrder = 0;
 
 	void Start () {
 		int randomInt = Random.Range(1,4);
@@ -37,6 +38,7 @@ public class pickTexture : MonoBehaviour {
 			} else {
 				chosenTexture = texturehair03;
 			}
+			spriteOrder = 1;
 		}
 		else if (this.gameObject.name == "head") {
 			if (randomInt == 1) {
@@ -55,6 +57,7 @@ public class pickTexture : MonoBehaviour {
 			} else {
 				chosenTexture = texturebody03;
 			}
+			spriteOrder = 1;
 		}
 		else if (this.gameObject.name == "legs") {
 			if (randomInt == 1) {
@@ -73,6 +76,7 @@ public class pickTexture : MonoBehaviour {
 			} else {
 				chosenTexture = texturefeet03;
 			}
+			spriteOrder = 1;
 		}
 		textureName = bodyPart + "_0" + randomInt;
 		gameObject.GetComponent<SpriteRenderer>().sprite = chosenTexture;
@@ -83,7 +87,7 @@ public class pickTexture : MonoBehaviour {
 			tempRend = gameObject.GetComponent<SpriteRenderer>();
 	}
 	void LateUpdate(){
-			tempRend.sortingOrder = (int)Camera.main.WorldToScreenPoint(tempRend.bounds.min).y * -10;
+			tempRend.sortingOrder = spriteOrder + (int)Camera.main.WorldToScreenPoint(tempRend.bounds.min).y * -10;
 	}
 
 	// Update is called once per frame
