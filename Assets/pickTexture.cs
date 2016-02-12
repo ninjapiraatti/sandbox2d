@@ -19,11 +19,11 @@ public class pickTexture : MonoBehaviour {
 	public Sprite texturefeet01;
 	public Sprite texturefeet02;
 	public Sprite texturefeet03;
-	// string texture = "Assets/Resources/Textures/Turner.png";
-	//public inputTexture : Sprite;
-	//public SpriteRenderer sprite;
 	public Sprite chosenTexture;
 	public int spriteOrder = 0;
+	private Rigidbody2D myScriptsRigidbody2D;
+	public bool Frozen = false;
+	public bool Exploded = false;
 
 	void Start () {
 		int randomInt = Random.Range(1,4);
@@ -84,14 +84,25 @@ public class pickTexture : MonoBehaviour {
 
 	public SpriteRenderer tempRend;  //allows to adjust for sorting within the unit layer, for visuals
 	void Awake(){
-			tempRend = gameObject.GetComponent<SpriteRenderer>();
+		tempRend = gameObject.GetComponent<SpriteRenderer>();
 	}
 	void LateUpdate(){
-			tempRend.sortingOrder = spriteOrder + (int)Camera.main.WorldToScreenPoint(tempRend.bounds.min).y * -10;
+		tempRend.sortingOrder = spriteOrder + (int)Camera.main.WorldToScreenPoint(tempRend.bounds.min).y * -10;
+	}
+	void freezeBodyPart() {
+		Frozen = true;
+		myScriptsRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+		myScriptsRigidbody2D.isKinematic = true;
+		gameObject.GetComponent<Collider2D>().isTrigger = true;
 	}
 
 	// Update is called once per frame
 	void Update () {
-
+		
+	}
+	void OnCollisionEnter2D(Collision2D coll) {
+		if((Exploded == true) && (Frozen == false) && (coll.gameObject.tag == "WakeOnAction")) {
+			freezeBodyPart();
+		}
 	}
 }
