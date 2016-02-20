@@ -98,11 +98,12 @@ public class pickTexture : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 	void OnCollisionEnter2D(Collision2D coll) {
 		if((Exploded == true) && (Frozen == false) && (coll.gameObject.tag == "WakeOnAction")) {
 			freezeBodyPart();
+			//Debug.Log("Bodypart Collision2D");
 		}
 	}
 }

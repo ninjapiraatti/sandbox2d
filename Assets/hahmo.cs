@@ -74,28 +74,34 @@ public class hahmo : MonoBehaviour {
 	void movement() {
 		InvokeRepeating("changeDirection", 0, (randomBoolean / speedFactor));
 	}
-	void OnTriggerEnter2D(Collider2D coll) {
-		if ((coll.gameObject.tag != "Bodypart") && (coll.gameObject.tag != "WakeOnAction")) {
+	//void OnTriggerEnter2D(Collider2D coll) {
+	void OnCollisionEnter2D(Collision2D coll) {
+		//if ((coll.gameObject.tag != "Bodypart") && (coll.gameObject.tag != "WakeOnAction") && (coll.gameObject.tag != "Character")) {
+		if (coll.gameObject.tag == "Deadly") {
 			floor = transform.position.y;
 			directionY = 0.0F;
 			directionX = 0.0F;
 			explode();
 			gameObject.GetComponent<Collider2D>().isTrigger = true;
+			//Debug.Log("TriggerEnter2D");
 		}
     }
 	void explode() {
+		//Debug.Log("explode");
 		foreach (Transform child in transform) {
 			if(child.gameObject.tag == "Bodypart"){
 
 				targetedBodyPart = child.gameObject.GetComponent<pickTexture>();
 
 				myScriptsRigidbody2D = child.gameObject.GetComponent<Rigidbody2D>();
-				myScriptsRigidbody2D.isKinematic = false;
-				float randomX = Random.Range(-1.5F,1.5F);
-				float randomY = Random.Range(1F,3.0F);
-				myScriptsRigidbody2D.AddForce(new Vector2(randomX, randomY), ForceMode2D.Impulse);
-				allowMovement = false;
-				targetedBodyPart.Exploded = true;
+				if(targetedBodyPart.Exploded != true) {
+					myScriptsRigidbody2D.isKinematic = false;
+					float randomX = Random.Range(-1.5F,1.5F);
+					float randomY = Random.Range(1F,3.0F);
+					myScriptsRigidbody2D.AddForce(new Vector2(randomX, randomY), ForceMode2D.Impulse);
+					allowMovement = false;
+					targetedBodyPart.Exploded = true;
+				}
 
      		}
 			if(child.gameObject.tag == "WakeOnAction"){
